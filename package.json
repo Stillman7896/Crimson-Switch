@@ -1,0 +1,11 @@
+{
+  "name": "rss-generator",
+  "version": "1.0.0",
+  "scripts": {
+    "generate": "node scripts/generate-feed.js"
+  },
+  "dependencies": {
+    "puppeteer": "^19.0.0",
+    "rss": "^1.2.2"
+  }
+}
