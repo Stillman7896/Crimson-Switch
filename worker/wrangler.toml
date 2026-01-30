@@ -1,0 +1,13 @@
+name = "rss-proxy-worker"
+main = "worker/index.js"   # if using module worker, set type = "javascript" or "webpack" as required
+compatibility_date = "2026-01-30"
+
+# If you want to publish to a custom route, add account_id and route details below.
+# account_id = "your-cloudflare-account-id"
+# workers_dev = true
+
+# If using R2, add bindings:
+# [[r2_buckets]]
+# binding = "FEEDS_BUCKET"
+# bucket_name = "your-r2-bucket-name
+"
