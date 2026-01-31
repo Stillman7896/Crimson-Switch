@@ -2,7 +2,7 @@ addEventListener('fetch', event => {
   event.respondWith(handle(event.request));
 });
 
-const RAW_FEED_URL = 'https://raw.githubusercontent.com/Stillman7896/Crimson-Switch/refs/heads/main/feed.xml?token=GHSAT0AAAAAADO2MG6KZWTZKZJOEYS2WPKY2L5TJ3A';
+const RAW_FEED_URL = 'https://raw.githubusercontent.com/Stillman7896/Crimson-Switch/refs/heads/main/feed.xml';
  
 async function handle(req) {
   try {
