@@ -7,9 +7,9 @@ const fetch = globalThis.fetch || require('node-fetch');
 
 (async () => {
   const URL = 'https://www.crimsonwitch.com/codes/Genshin_Impact';
-  const SELECTOR = '.code-card, .code-card.special, .code-card.claimed';
+  const SELECTOR = '.code-card, .code-card.special';
   const OUTFILE = path.join(process.cwd(), 'feed.xml');
-  const ICON_RAW_URL = 'https://raw.githubusercontent.com/MyUsername/RepoName/main/path/icon-encoded.txt';
+  const ICON_RAW_URL = 'https://github.com/Stillman7896/Crimson-Switch/raw/refs/heads/main/src/icon-encoded.txt';
 
   // Fetch icon base64 text and build data: URI (default to PNG; change MIME if needed)
   let iconDataUri = null;
@@ -115,7 +115,7 @@ const fetch = globalThis.fetch || require('node-fetch');
   const feed = new RSS({
     title: 'CrimsonWitch — Genshin Impact Codes',
     description: 'Generated feed from crimsonwitch.com/codes/Genshin_Impact',
-    feed_url: 'https://example.com/feed.xml',
+    feed_url: 'http://crimson-switch.orange-butterfly-2bf3.workers.dev/',
     site_url: URL,
     language: 'en',
     ...(iconDataUri ? { image_url: iconDataUri } : {})
