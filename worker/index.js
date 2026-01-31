@@ -3,8 +3,7 @@ addEventListener('fetch', event => {
 });
 
 const RAW_FEED_URL = 'https://raw.githubusercontent.com/Stillman7896/Crimson-Switch/refs/heads/main/feed.xml?token=GHSAT0AAAAAADO2MG6KZWTZKZJOEYS2WPKY2L5TJ3A';
-// If using R2 with a binding named FEEDS_BUCKET, replace fetch logic with R2 getObject (example commented below).
-
+ 
 async function handle(req) {
   try {
     const res = await fetch(RAW_FEED_URL, { cf: { cacheEverything: true } });
@@ -14,7 +13,6 @@ async function handle(req) {
       status: 200,
       headers: {
         'Content-Type': 'application/rss+xml; charset=utf-8',
-        // Let the worker edge cache hold it; origin update cadence controlled by your GH Action schedule.
         'Cache-Control': 'public, max-age=300, s-maxage=300'
       }
     });
