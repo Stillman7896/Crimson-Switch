@@ -80,6 +80,5 @@ const fetch = require('node-fetch');
   });
 
   fs.writeFileSync(OUTFILE, feed.xml({ indent: true }), 'utf8');
-  console.log(`Wrote ${items.length} items to ${OUTF
-      ILE}`);
+  console.log(`Wrote ${items.length} items to ${OUTFILE}`);
 })();
