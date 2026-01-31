@@ -11,13 +11,13 @@ const fetch = globalThis.fetch || require('node-fetch');
   const OUTFILE = path.join(process.cwd(), 'feed.xml');
   const ICON_RAW_URL = 'https://github.com/Stillman7896/Crimson-Switch/raw/refs/heads/main/src/icon-encoded.txt';
 
-  // Fetch icon base64 text and build data: URI (default to PNG; change MIME if needed)
+  // Fetch icon base64 text and build data: URI
   let iconDataUri = null;
   try {
     const res = await fetch(ICON_RAW_URL);
     if (res.ok) {
       const b64text = (await res.text()).trim();
-      if (b64text) iconDataUri = `data:image/png;base64,${b64text}`;
+      if (b64text) iconDataUri = `data:image/webp;base64,${b64text}`;
     } else {
       console.warn('Could not fetch icon-encoded.txt:', res.status);
     }
