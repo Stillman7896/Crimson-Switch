@@ -111,6 +111,40 @@ const fetch = globalThis.fetch || require('node-fetch');
 
   await browser.close();
 
+    // Clean descriptions (remove SVGs, merge reward img alt + text)
+  function cleanDescription(html) {
+    const $ = cheerio.load(html);
+
+    // Remove svg elements entirely
+    $('svg').remove();
+
+    // Merge reward list items into single lines
+    $('ul.rewards > li').each((i, li) => {
+      const $li = $(li);
+      const img = $li.find('img.reward-img').first();
+      const alt = (img.attr('alt') || '').trim();
+      const p = $li.find('p').first();
+      const txt = p.length ? p.text().trim() : $li.text().trim();
+      const combined = `${alt}${alt && txt ? ' ' : ''}${txt}`.trim();
+      $li.html(`<div class="reward-line">${combined}</div>`);
+    });
+
+    // Remove script tags and inline event attributes
+    $('script').remove();
+    $('[onload],[onclick],[onerror],onmouseover,onmouseenter').each((i,el)=>{
+      const attribs = Object.keys(el.attribs || {});
+      attribs.forEach(a => {
+        if (/^on/i.test(a)) $(el).removeAttr(a);
+      });
+    });
+
+    // Collapse excessive whitespace
+    let out = $.html();
+    out = out.replace(/\s{2,}/g, ' ').replace(/>\s+</g, '><').trim();
+    return out;
+
+ }
+
   // Build RSS feed
   const feed = new RSS({
     title: 'CrimsonWitch — Genshin Impact Codes',
@@ -124,13 +158,12 @@ const fetch = globalThis.fetch || require('node-fetch');
   items.forEach(it => {
     feed.item({
       title: it.title || 'Untitled',
-      description: it.content || '',
+      description: cleaned,
       url: it.url,
       date: it.date || undefined
     });
   });
 
   fs.writeFileSync(OUTFILE, feed.xml({ indent: true }), 'utf8');
-  console.log(`Wrote ${items.length} items to $
-        {OUTFILE}`);
+  console.log(`Wrote ${items.length} items to ${OUTFILE}`);
 })();
