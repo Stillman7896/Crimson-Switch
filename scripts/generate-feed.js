@@ -157,6 +157,7 @@ const fetch = globalThis.fetch;
   });
 
   items.forEach(it => {
+    const cleaned = cleanDescription(it.content);
     feed.item({
       title: it.title || 'Untitled',
       description: cleaned,
