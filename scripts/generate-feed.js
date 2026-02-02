@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const puppeteer = require('puppeteer');
 const RSS = require('rss');
+const cheerio = require('cheerio');
 const fetch = globalThis.fetch || require('node-fetch');
 
 (async () => {
