@@ -123,13 +123,11 @@ const fetch = globalThis.fetch;
     $('ul.rewards > li').each((i, li) => {
       const $li = $(li);
       const img = $li.find('img.reward-img').first();
-      const alt = (img.attr('alt') || '').trim();
+      const alt = img.attr('alt') || '';
       const p = $li.find('p').first();
       const txt = p.length ? p.text().trim() : $li.text().trim();
-      const combined = `${alt}${alt && txt ? ' ' : ''}${txt}`.trim();
-      $li.html(`<div class="reward-line">${combined}</div>`);
+      $li.html(`<div class="reward-line">${img[0].outerHTML} ${txt}</div>`);
     });
-
     // Remove script tags and inline event attributes
     $('script').remove();
     $('[onload],[onclick],[onerror],onmouseover,onmouseenter').each((i,el)=>{
