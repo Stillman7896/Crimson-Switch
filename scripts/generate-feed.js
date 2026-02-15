@@ -9,7 +9,7 @@ const fetch = globalThis.fetch;
   const URL = 'https://www.crimsonwitch.com/codes/Genshin_Impact';
   const SELECTOR = '.code-card, .code-card.special';
   const OUTFILE = path.join(process.cwd(), 'feed.xml');
-  const ICON_RAW_URL = 'https://github.com/me/repo/raw/refs/heads/main/src/icon-encoded.txt';
+  const ICON_RAW_URL = 'https://github.com/Stillman7896/Crimson-Switch/raw/refs/heads/main/src/icon-encoded.tx';
 
   let iconDataUri = null;
   try {
