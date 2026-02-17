@@ -102,7 +102,6 @@ const fetch = globalThis.fetch;
   });
 
   fs.writeFileSync(OUTFILE, feed.xml({ indent: true }), 'utf8');
-  console.log(`✅  ${cleanedItems.length} items written to ${O
-              UTFILE}`);
+  console.log(`✅  ${cleanedItems.length} items written to ${OUTFILE}`);
 })();
 
